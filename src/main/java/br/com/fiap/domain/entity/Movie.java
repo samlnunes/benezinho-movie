@@ -1,43 +1,62 @@
 package br.com.fiap.domain.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "TB_MOVIE", uniqueConstraints = {
-        @UniqueConstraint(name = "UK_NM_MOVIE", columnNames = "NM_MOVIE")
+        @UniqueConstraint(name = "UK_TITLE", columnNames = "TITLE")
 })
 public class Movie {
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_MOVIE")
+    @Column
     private Long id;
 
+    @Column
     private boolean adult;
 
+    @Column
     private String backdropPath;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    @JoinColumn(
+            name = "GENRES",
+            referencedColumnName = "ID_GENRE",
+            foreignKey = @ForeignKey(
+                    name = "FK_TB_GENRE_MOVIE"
+            )
+    )
     private Set<Genre> genres = new LinkedHashSet<>();
 
+    @Column
     private String originalLanguage;
 
+    @Column
     private String originalTitle;
 
+    @Column
     private String overview;
 
+    @Column
     private Double popularity;
 
+    @Column
     private String posterPath;
 
+    @Column
     private String releaseDate;
 
+    @Column
     private String title;
 
+    @Column
     private boolean video;
 
+    @Column
     private double voteAverage;
 
+    @Column
     private Integer voteCount;
 
     public Long getId() {

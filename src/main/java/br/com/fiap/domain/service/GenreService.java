@@ -24,7 +24,7 @@ public class GenreService implements Service<Genre, Long> {
         EntityManager manager = factory.createEntityManager();
         GenreRepository repo = GenreRepository.build(manager);
 
-        instance.compareAndSet(null, new GenreRepository(repo));
+        instance.compareAndSet(null, new GenreService(repo));
         return instance.get();
     }
 

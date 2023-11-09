@@ -1,8 +1,8 @@
 package br.com.fiap.domain.repository;
 
 import br.com.fiap.domain.entity.Movie;
+import jakarta.persistence.EntityManager;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 

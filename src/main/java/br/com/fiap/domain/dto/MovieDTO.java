@@ -33,4 +33,9 @@ public record MovieDTO(Long id, boolean adult, String backdropPath, Set<Genre> g
 
         return movie;
     }
+
+    public static MovieDTO of(Movie m) {
+        if (Objects.isNull(m)) return null;
+        return new MovieDTO(m.getId(), m.isAdult(), m.getBackdropPath(), m.getGenres(), m.getOriginalLanguage(), m.getOriginalTitle(), m.getOverview(), m.getPopularity(), m.getPosterPath(), m.getReleaseDate(), m.getTitle(), m.isVideo(), m.getVoteAverage(), m.getVoteCount());
+    }
 }

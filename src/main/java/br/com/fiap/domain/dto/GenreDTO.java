@@ -16,11 +16,12 @@ public record GenreDTO(Long id, String name) {
 
         Genre genre = new Genre();
         genre.setName(dto.name);
+
         return genre;
     }
 
-    public static GenreDTO of(Genre genre) {
-        if (Objects.isNull(genre)) return null;
-        return new GenreDTO(genre.getId(), genre.getName());
+    public static GenreDTO of(Genre g) {
+        if (Objects.isNull(g)) return null;
+        return new GenreDTO(g.getId(), g.getName());
     }
 }

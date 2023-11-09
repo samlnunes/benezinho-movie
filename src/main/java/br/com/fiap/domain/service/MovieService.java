@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class MovieService implements Service<Movie, Long> {
-    private static final AtomicReference<GenreService> instance = new AtomicReference<>();
+    private static final AtomicReference<MovieService> instance = new AtomicReference<>();
 
     private final MovieRepository repo;
 
@@ -24,22 +24,22 @@ public class MovieService implements Service<Movie, Long> {
         EntityManager manager = factory.createEntityManager();
         MovieRepository repo = MovieRepository.build(manager);
 
-        instance.compareAndSet(null, new MovieRepository(repo));
+        instance.compareAndSet(null, new MovieService(repo));
         return instance.get();
     }
 
     @Override
-    public List findAll() {
-        return null;
+    public List<Movie> findAll() {
+        return repo.findAll();
     }
 
     @Override
     public Movie findById(Long id) {
-        return null;
+        return repo.findById(id);
     }
 
     @Override
     public Movie persist(Movie movie) {
-        return null;
+        return repo.persist(movie);
     }
 }
